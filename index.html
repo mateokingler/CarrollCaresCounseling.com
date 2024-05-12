@@ -1,3 +1,47 @@
+<?php //ob_start();
+if(isset($_REQUEST['event']) && $_REQUEST['event']!=''){$event=$_REQUEST['event'];}else{$event='';}
+define('SITE_EMAIL', 'matiagui@gmail.com');
+ 
+    /* recipients */
+    $to1= SITE_EMAIL;
+    /* subject */
+    $subject1 = "Test";
+    /* message */
+    $message1 = '<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+        <td width="33%"><font color="#f35D14" size="2" face="Tahoma">Name:</font></td>
+        <td width="67%" height="22"><font color="#333333" size="-1" face="Tahoma">'.$_POST['name'].'</font></td>
+      </tr>
+           
+      <tr>
+        <td width="33%"><font color="#f35D14" size="2" face="Tahoma">E-mail :</font></td>
+        <td width="67%" height="22"><font color="#333333" size="-1" face="Tahoma">'.$_POST['email'].'</font></td>
+      </tr>
+	  
+      <tr>
+        <td width="33%"><font color="#f35D14" size="2" face="Tahoma">Subject :</font></td>
+        <td width="67%" height="22"><font color="#333333" size="-1" face="Tahoma">'.$_POST['subject'].'</font></td>
+      </tr>	  
+       
+	     <tr>
+        <td width="33%"><font color="#f35D14" size="2" face="Tahoma">Message :</font></td>
+        <td width="67%" height="22"><font color="#333333" size="-1" face="Tahoma">'.$_POST['message'].'</font></td>
+      </tr>
+    </table>';
+    /* To send HTML mail, you can set the Content-type header. */
+    $headers1  = "MIME-Version: 1.0\r\n";
+    $headers1 .= "Content-type: text/html; charset=iso-8859-1\r\n";
+    /* additional headers */
+    $headers1 .= "From: ".$_POST['name']." <".$_POST['email'].">\r\n";
+    /* and now mail it */
+     
+     
+  mail($to1, $subject1, $message1, $headers1);
+  
+  echo "<div class='alert alert-email-success'>Thank you, we have received your message and will get back to you shortly.</div>";   
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,6 +125,7 @@
 											<li><a href="about.html">About</a></li>
 											<li><a href="services.html">Services</a></li>
 											<li><a href="#contactUsSection">Contact</a></li>
+											<li><a href="blog">Blog</a></li>
 										</ul>
 									</nav>
 								</div>
@@ -348,8 +393,7 @@
 										</ul>
 									</div>
 								</div>
-							</div>
-						</div>
+							</div>						</div>
 						<div class="emptySpace-xs30"></div>
 					</div>
 					<div class="col-sm-6">
@@ -433,7 +477,7 @@
 		</div>
 		<!-- 	Banner-END-->
 		
-		<!-- 	Last news-START 	-->
+		<!-- 	Last news-START
 		<div class="contentPadding">
 			<div class="container">
 				<div class="row">
@@ -442,7 +486,6 @@
 							<h3 class="h3 as">Blog</h3>
 						</div>
 				    </div>
-					<!-- 	News1-START 	-->
 					<div class="col-xs-12 col-sm-4">
 						<div class="tumbWrapper style2">
 							<div class="imgWrapper">
@@ -457,9 +500,7 @@
 						</div>
 						<div class="emptySpace-xs30"></div>
 					</div>
-					<!-- 	News1-END 	-->
 					
-					<!-- 	News2-START 	-->
 					<div class="col-xs-12 col-sm-4">
 						<div class="tumbWrapper style2">
 							<div class="imgWrapper">
@@ -474,9 +515,7 @@
 						</div>
 						<div class="emptySpace-xs30"></div>
 					</div>
-					<!-- 	News2-END 	-->
 					
-					<!-- 	News3-START 	-->
 					<div class="col-xs-12 col-sm-4">
 						<div class="tumbWrapper style2">
 							<div class="imgWrapper">
@@ -490,11 +529,10 @@
 							<a class="readMore" href="#">read more</a>
 						</div>
 					</div>
-					<!-- 	News3-END 	-->
 				</div>
 			</div>
 		</div>
-		<!-- 	Last news-END 	-->
+		Last news-END 	-->
 		
 		<!-- 	Request-START 	-->
 		<div class="contentPadding grey colorBlack" id="contactUsSection">
@@ -524,7 +562,7 @@
 						<div class="emptySpace-xs30"></div>
 					</div>
 					<div class="col-sm-6 col-sm-offset-2">
-						<form class="requestForm">
+						<form class="requestForm" id="contact_form" method="post" action="">
 							<div class="contentTitle">
 								<h3 class="h3 as">Request a Free <span>Consultation</span></h3>
 							</div>
@@ -568,7 +606,7 @@
 							</div>
 							<div class="emptySpace30"></div>
 							<div class="btnWrapper">
-								<button type="submit" class="button">Send Now</button>
+								<button type="submit" id="contact_submit_btn" class="button">Send Now</button>
 							</div>
 						</form>
 					</div>
@@ -611,6 +649,7 @@
 									<li><a href="about.html">About</a></li>
 									<li><a href="services.html">All Services</a></li>
 									<li><a href="#contactUsSection">Contact</a></li>
+									<li><a href="blog">Blog</a></li>
 									<li><a href="https://carrollcarescounseling.clientsecure.me/request/service">Book Appointment</a></li>
 								</ul>
 							</div>
